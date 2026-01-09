@@ -7,7 +7,7 @@ load_dotenv()
 from langchain.agents import create_agent
 from langchain.tools import tool
 from langchain_core.messages import HumanMessage
-from langchain_openai import ChatOpenAI
+from langchain_ollama import ChatOllama
 from langchain_tavily import TavilySearch
 
 
@@ -26,7 +26,7 @@ class AgentResponse(BaseModel):
     )
 
 
-llm = ChatOpenAI(model="gpt-5")
+llm = ChatOllama(model="llama3.1", temperature = 0.8)
 tools = [TavilySearch()]
 agent = create_agent(model=llm, tools=tools, response_format=AgentResponse)
 
